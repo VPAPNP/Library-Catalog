@@ -42,6 +42,9 @@ test("Verify register text link", async ({page}) => {
 });
 test("Verify valid user can login", async ({page}) => {
     await page.goto(appUrl);
+    const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
+    await loginButton.click();
+    await page.waitForSelector('#email'); // Wait for the email input to appear
     await page.fill('#email', "vasil@abv.bg");
     await page.fill('#password', "admin");
     const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
