@@ -40,3 +40,14 @@ test("Verify register text link", async ({page}) => {
     expect(text).toBe("Register");
     
 });
+test("Verify valid user can login", async ({page}) => {
+    await page.goto(appUrl);
+    await page.fill('#email', "vasil@abv.bg");
+    await page.fill('#password', "admin");
+    const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
+    await loginBtn.click();
+    const logoutBtn = await page.$('#logoutBtn');
+    const logoutBtnText = await logoutBtn.innerText();
+    expect(logoutBtnText).toBe("Logout");
+    
+}); 
