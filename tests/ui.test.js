@@ -45,7 +45,7 @@ test("Verify valid user can login", async ({page}) => {
     await page.waitForURL("http://localhost:3000/login");
     const emailInput = await page.$("#email");
     const passwordInput = await page.$("#password");
-    await emailInput.fill("vasil@abv.bg");
+    await emailInput.fill('vasil@abv.bg');
     await passwordInput.fill("123456");
     // const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
     // await loginButton.click();
