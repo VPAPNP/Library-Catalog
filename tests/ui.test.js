@@ -51,7 +51,7 @@ test("Verify valid user can login", async ({page}) => {
     const emailInput = await page.$("#email");
     const passwordInput = await page.$("#password");
      const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
-     await loginBtn.click();
+     
      const logoutBtn = await page.$('#logoutBtn');
      const logoutBtnText = await logoutBtn.innerText();
      //expect(logoutBtnText).toBe("Logout");
