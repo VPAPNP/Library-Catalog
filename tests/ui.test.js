@@ -42,16 +42,17 @@ test("Verify register text link", async ({page}) => {
 });
 test("Verify valid user can login", async ({page}) => {
     await page.goto(appUrl + "login");
-    await page.waitForURL(appUrl + "login");
+    
     // const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
     // await loginButton.click();
-    
-    // await page.fill('#email', "vasil@abv.bg");
-    // await page.fill('#password', "admin");
-    // const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
-    // await loginBtn.click();
-    // const logoutBtn = await page.$('#logoutBtn');
-    // const logoutBtnText = await logoutBtn.innerText();
-    // expect(logoutBtnText).toBe("Logout");
+    await page.waitForSelector('#email');
+     await page.fill('#email', "vasil@abv.bg");
+     await page.waitForSelector('#password');
+     await page.fill('#password', "admin");
+     const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
+     await loginBtn.click();
+     const logoutBtn = await page.$('#logoutBtn');
+     const logoutBtnText = await logoutBtn.innerText();
+     expect(logoutBtnText).toBe("Logout");
     
 }); 
