@@ -45,6 +45,7 @@ test("Verify valid user can login", async ({page}) => {
     await page.waitForURL(appUrl);
     const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
     await loginButton.click();
+    await page.waitForSelector('#login-form');
     await page.fill('#email', "vasil@abv.bg");
     await page.fill('#password', "admin");
     const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
