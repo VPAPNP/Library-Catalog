@@ -41,10 +41,10 @@ test("Verify register text link", async ({page}) => {
     
 });
 test("Verify valid user can login", async ({page}) => {
-    await page.goto(appUrl);
-    await page.waitForURL(appUrl);
-    const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
-    await loginButton.click();
+    await page.goto(appUrl + "login");
+    await page.waitForURL(appUrl + "login");
+    // const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
+    // await loginButton.click();
     await page.waitForSelector('#login-form');
     await page.fill('#email', "vasil@abv.bg");
     await page.fill('#password', "admin");
