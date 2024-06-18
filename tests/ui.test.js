@@ -72,21 +72,21 @@ test("Verify valid user can register", async ({ page }) => {
     
     
 });
-// test("Verify valid user can login", async ({ page }) => {
-//     await page.goto(appUrl);
-//     await page.waitForURL(appUrl);
+test("Verify valid user can login", async ({ page }) => {
+    await page.goto(appUrl);
+    await page.waitForURL(appUrl);
 
-//     const loginButton = await page.waitForSelector('#guest > a:nth-child(1)', { state: 'visible' });
-//     await loginButton.click();
+    const loginButton = await page.waitForSelector('#guest > a:nth-child(1)', { state: 'visible' });
+    await loginButton.click();
 
-//     const emailInput = await page.waitForSelector('#email', { state: 'visible' });
-//     expect(emailInput).toBeTruthy();
-//     await emailInput.fill('vasil@abv.bg');
-//     const passwordInput = await page.waitForSelector('#password', { state: 'visible' });
-//     expect(passwordInput).toBeTruthy();
-//     await passwordInput.fill('1234');
-//     const logoutBtn = await page.waitForSelector('#logoutBtn');
-//     const isVisible = await logoutBtn.isVisible();
-//     expect(isVisible).toBeTruthy();
+    const emailInput = await page.waitForSelector('#email', { state: 'visible' });
+    expect(emailInput).toBeTruthy();
+    await emailInput.fill('vasil@abv.bg');
+    const passwordInput = await page.waitForSelector('#password', { state: 'visible' });
+    expect(passwordInput).toBeTruthy();
+    await passwordInput.fill('1234');
+    const logoutBtn = await page.waitForSelector('#logoutBtn');
+    const isVisible = await logoutBtn.isVisible();
+    expect(isVisible).toBeTruthy();
 
-// });   
+});   
