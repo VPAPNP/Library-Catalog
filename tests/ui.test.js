@@ -40,17 +40,36 @@ test("Verify register text link", async ({page}) => {
     expect(text).toBe("Register");
     
 });
-test("Verify valid user can login", async ({page}) => {
+test("Verify register user register a new user", async ({page}) => {
     await page.goto(appUrl);
-    const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
-    await loginButton.click();
-    await page.waitForSelector('#email'); // Wait for the email input to appear
-    await page.fill('#email', "vasil@abv.bg");
-    await page.fill('#password', "admin");
-    const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
-    await loginBtn.click();
-    const logoutBtn = await page.$('#logoutBtn');
-    const logoutBtnText = await logoutBtn.innerText();
-    expect(logoutBtnText).toBe("Logout");
+    await page.waitForSelector('nav.navbar');
+    await page.click('#guest > a:nth-child(2)');
+    const email = page.locator('#email');
+    const password = page.locator('#password');
+    const repeatPassword = page.locator('#repeat-pass');
+
+    await email.fill('vasil1@abv.bg');
+    await password.fill('VaskoJivkov123');
+    await repeatPassword.fill('VaskoJivkov123');
+    await page.click('#register-form > fieldset > input');
+
+    await page.waitForURL(appUrl + 'catalog');
+
+    expect(page.url()).toBe(appUrl + 'catalog');
+
+
+
     
-}); 
+   });
+
+test("Verify login user login", async ({page}) => {
+    await page.goto(appUrl);
+    await page.waitForSelector('nav.navbar');
+    await page.click('#guest > a');
+    const email = page.locator('#email');
+    const password = page.locator('#password');
+    await email.fill('vasil1@abv.bg');
+    await password.fill('VaskoJivkov123');
+    await page.click('#login-form > fieldset > input');
+    await page.waitForURL(appUrl + 'catalog');
+});   
