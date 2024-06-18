@@ -40,20 +40,53 @@ test("Verify register text link", async ({page}) => {
     expect(text).toBe("Register");
     
 });
-test("Verify valid user can login", async ({page}) => {
+test("Verify valid user can register", async ({ page }) => {
     await page.goto(appUrl);
     await page.waitForURL(appUrl);
-   
-    const loginButton = await page.waitForSelector('#guest > a:nth-child(1)');
-    await loginButton.click();
-    await page.waitForurl(appUrl + "login");
-    const emailInput = await page.$("#email");
-    await emailInput.fill("vasil@abv.bg");
-    const passwordInput = await page.$("#password");
-     const loginBtn = await page.locator('xpath=//*[@id="login-form"]/fieldset/input');
-     
-     const logoutBtn = await page.$('#logoutBtn');
-     const logoutBtnText = await logoutBtn.innerText();
-     //expect(logoutBtnText).toBe("Logout");
+
+    const registerButton = await page.waitForSelector('#guest > a:nth-child(2)', { state: 'visible' });
+    await registerButton.click();
+
+    const emailInput = await page.waitForSelector('#email', { state: 'visible' });
+    expect(emailInput).toBeTruthy();
+    await emailInput.fill('vasil@abv.bg');
+
+    const passwordInput = await page.waitForSelector('#password', { state: 'visible' });
+    expect(passwordInput).toBeTruthy();
+    await passwordInput.fill('1234');
+
+    const repeatPasswordInput = await page.waitForSelector('#repeat-pass', { state: 'visible' });
+    expect(repeatPasswordInput).toBeTruthy();
+    await repeatPasswordInput.fill('1234');
+
+    const registerBtn = await page.waitForSelector('#register-form > fieldset > input', { state: 'visible' });
+    await registerBtn.click();
+
+    await page.waitForURL(appUrl + 'catalog');
+    const logoutBtn = await page.waitForSelector('#logoutBtn');
+    const isVisible = await logoutBtn.isVisible();
+    expect(isVisible).toBeTruthy();
+
+
+
     
-}); 
+    
+});
+// test("Verify valid user can login", async ({ page }) => {
+//     await page.goto(appUrl);
+//     await page.waitForURL(appUrl);
+
+//     const loginButton = await page.waitForSelector('#guest > a:nth-child(1)', { state: 'visible' });
+//     await loginButton.click();
+
+//     const emailInput = await page.waitForSelector('#email', { state: 'visible' });
+//     expect(emailInput).toBeTruthy();
+//     await emailInput.fill('vasil@abv.bg');
+//     const passwordInput = await page.waitForSelector('#password', { state: 'visible' });
+//     expect(passwordInput).toBeTruthy();
+//     await passwordInput.fill('1234');
+//     const logoutBtn = await page.waitForSelector('#logoutBtn');
+//     const isVisible = await logoutBtn.isVisible();
+//     expect(isVisible).toBeTruthy();
+
+// });   
